@@ -1,0 +1,29 @@
+
+h2{
+    font-size: 36px;
+    line-height: 54px;
+
+}
+h4{
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.Home{
+    height: 87vh;
+    border-radius: 24px;
+    margin: 2vh 25px 46px 350px;
+    background-color: white;
+}
+
+.Home .Home-tk{
+    padding: 24px;
+}
+
+.Home .Home-tk .Home-tk-1 {
+    display: flex;
+    padding-top: 32px;
+    align-items: stretch;
+    justify-content: space-between;
+}
+

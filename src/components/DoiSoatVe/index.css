@@ -1,0 +1,160 @@
+h2{
+    font-size: 36px;
+    line-height: 54px;
+
+}
+h4{
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.LocVe {
+    display: flex;
+}
+
+.DoiSoatVe{
+    height: 87vh;
+    border-radius: 24px;
+    margin: 2vh 25px 25px 350px;
+    background-color: white;
+    width: 70%;
+}
+
+.DoiSoatVe-2{
+    height: 87vh;
+    border-radius: 24px;
+    margin: 2vh 25px 25px 0;
+    background-color: white;
+    width: 30%;
+}
+.DoiSoatVe .DoiSoatVe-tk{
+    padding: 24px;
+}
+
+.DoiSoatVe .DoiSoatVe-tk .DoiSoatVe-Ve {
+    display: flex;
+    padding-top: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.DoiSoatVe .DoiSoatVe-tk .search{
+    display: inline;
+    border-radius: 12px;
+    padding: .5em 1em .5em 0.5em;
+    margin-top: 33px;
+    background-color: #F7F7F8;
+    box-shadow: 0 1px 4px 0 rgba(255, 255, 255, 0);
+  }
+  .DoiSoatVe .DoiSoatVe-tk .DoiSoatVe-Ve .search input{
+    font-size: 16px;
+    border: none;
+    background: none;
+    padding: 10px 16px;
+    width: 350px;
+    
+  }
+
+  input:focus{
+    outline: none;
+}
+
+.DoiVe{
+    margin-right: 7px;
+    padding: 15px;
+    background-color: #FF993C;
+    color: #fff;
+    border: 1px solid;
+    font-size: 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.h2-SoatVe ,.TinhTrangDoiSoat, .LoaiVe, .NgayBatDau, .NgayKetThuc{
+    padding: 12px 24px;
+
+}
+
+.TinhTrangDoiSoat{
+    display: flex;
+}
+
+.TinhTrangDoiSoat-item {
+    padding: 3px 0px 0px 20px;
+    font-size: 20px;
+}
+
+.item-input{
+    padding-bottom: 15px;
+    display: flex;
+    font-size: 20px;
+    align-items: flex-start;
+}
+
+input[type="radio"] {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+
+.LoaiVe{
+    display: flex;
+    align-items: baseline;
+    
+}
+.LoaiVe h4{
+    width: 190px;
+}
+
+.NgayBatDau{
+    display: flex;
+}
+.NgayBatDau h4{
+    width: 190px;
+}
+
+.NgayKetThuc{
+    display: flex;
+}
+.NgayKetThuc h4{
+    width: 190px;
+}
+
+.Loc{
+    padding: 15px 55px;
+    margin-top: 15px;
+    background-color: white;
+    color: #FF993C;
+    border: 1px solid;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.btn{
+    text-align: center;
+}
+
+/* table */
+table.table-doisoatve td, th {
+    padding: 10px 5px;
+  }
+  
+table.table-doisoatve {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    border-collapse: collapse;
+    
+}
+table.table-doisoatve thead tr:nth-child(2n + 1) {
+    background: #F1F4F8;
+    
+  }
+table.table-doisoatve tbody tr:nth-child(2n + 2) {
+    background: #F1F4F8;
+  }
