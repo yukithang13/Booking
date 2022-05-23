@@ -2,12 +2,12 @@ import React, { useEffect  } from "react";
 import "./index.css";
 
 import { SearchOutlined } from "@ant-design/icons";
+import TableDoiSoat from "./TableDoiSoat";
 
 function DanhSachGoiVe(){
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, []);
-
 
 
    return(
@@ -30,24 +30,14 @@ function DanhSachGoiVe(){
                 <thead>
                     <tr>
                         <th>STT</th>            
-                        <th>Số vé</th>
-                        <th>Ngày sử dụng</th>
-                        <th>Tên loại vé</th>
-                        <th>Cổng check-in</th>
-                        <th> </th>
+                        <th className="cantrai">Số vé</th>
+                        <th className="canphai">Ngày sử dụng</th>
+                        <th className="cantrai">Tên loại vé</th>
+                        <th className="cantrai">Cổng check-in</th>
+                        <th > </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>ALT20210501</td>
-                        <td>14/04/2021</td>
-                        <td>Vé cổng</td>
-                        <td>Cổng 1(du lieu ao)</td>
-                        <td>Chưa đối soát</td>
-                    </tr>
-                    
-                </tbody>
+                <TableDoiSoat/>
                 </table>
             </div>
             

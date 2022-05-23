@@ -97,8 +97,12 @@ button.btn-capnhap {
 }
 
 /* table */
-table.table-danhsachgoive td, th {
-    padding: 10px 5px;
+table.table-danhsachgoive th{
+    padding: 20px 20px;
+    font-weight: 500;
+  }
+  table.table-danhsachgoive td{
+    padding: 15px 20px;
   }
   
 table.table-danhsachgoive {

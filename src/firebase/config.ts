@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import 'firebase/auth';
-import 'firebase/firestore';
+import 'firebase/compat/firestore';
 
-firebase.initializeApp({
+const config = {
   apiKey: "AIzaSyCfJYB6yB4bYqoZosQhKu0BfK1GKDm9tNg",
   authDomain: "typescript-d56bc.firebaseapp.com",
   databaseURL: "https://typescript-d56bc-default-rtdb.firebaseio.com",
@@ -11,6 +11,8 @@ firebase.initializeApp({
   messagingSenderId: "11413491329",
   appId: "1:11413491329:web:2bf99dca9f86e1477b0780",
   measurementId: "G-K8L6H0TYVH"
-});
+};
+firebase.initializeApp(config);
+export default firebase.firestore();
 
-export default firebase;
+

@@ -1,8 +1,14 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
+
+
 function TrangChu(){
-   
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+      }, []);
+
    return(
         <div className="Home">
             <div className="Home-tk">
@@ -12,8 +18,7 @@ function TrangChu(){
                     <input type="date" className="form-control calender-black" />
                 </div>
                 <div className="Home-tk-2">
-                    <h4>Công ty</h4>
-                    <h4>Tên</h4>
+                
                 </div>
             </div>
         </div>

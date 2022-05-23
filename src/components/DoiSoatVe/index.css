@@ -92,7 +92,7 @@ h4{
     align-items: flex-start;
 }
 
-input[type="radio"] {
+.TinhTrangDoiSoat-item input[type="radio"] {
     width: 30px;
     height: 30px;
     margin-right: 20px;
@@ -139,10 +139,15 @@ input[type="radio"] {
 }
 
 /* table */
-table.table-doisoatve td, th {
-    padding: 10px 5px;
+table.table-doisoatve th {
+    padding: 15px 20px;
+    font-weight: 500;
   }
   
+table.table-doisoatve td {
+    padding: 20px 20px;
+  }
+
 table.table-doisoatve {
     margin-bottom: 20px;
     width: 100%;
@@ -157,4 +162,13 @@ table.table-doisoatve thead tr:nth-child(2n + 1) {
   }
 table.table-doisoatve tbody tr:nth-child(2n + 2) {
     background: #F1F4F8;
+  }
+
+  .CheckVe-active1{
+    color: #A5A8B1;
+    font-weight: 500;
+  }
+  .CheckVe-active2{
+    color: #FD5959;
+    font-weight: 500;
   }
