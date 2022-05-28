@@ -82,7 +82,7 @@ button.XuatFile {
 button.btn-capnhap {
 
     padding: 5px;
-    background-color: white;
+    background: none;
     color: #FF993C;
     font-family: 'Montserrat';
     font-weight: 500;
@@ -119,3 +119,147 @@ table.table-danhsachgoive thead tr:nth-child(2n + 1) {
 table.table-danhsachgoive tbody tr:nth-child(2n + 2) {
     background: #F1F4F8;
   }
+
+  #Background-black1 {
+    background: rgb(0 0 0 / 50%);
+    margin-left: -350px;
+    position: absolute;
+    margin-top: -38rem;
+    height: 107vh;
+    width: 100vw;
+    display: none;
+    animation: animationAl 1s ease-in-out;
+}
+  
+   @keyframes animationAl {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .BangThemVe{
+    position: absolute;
+    top: 25%;
+    left: 32%;
+    height: 600px;
+    width: 750px;
+    border-radius: 20px;
+    background: white;
+    transition: top left 0.1s;
+   }
+  
+   .BangThemVe h2{
+     text-align: center;
+   }
+
+   .ThemVe-Ten h4 span{
+        color: red;
+   }
+
+   .ThemVe-Ten{
+    padding: 5px 0 10px 40px;
+   }
+
+   .ThemVe-Ten input{
+    border-radius: 8px;
+    width: 48%;
+    margin-top: 10px;
+    height: 20px;
+    border: 1px solid #A5A8B1;
+    padding: 10px;
+   }
+
+   .ThemVe-Date{
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px 0 10px 40px;
+   }
+
+   .Date-Them{
+    margin-right: 25px;
+    margin-top: 10px;
+    font-size: 16px;
+   }
+
+   .ThemVe-GiaVe{
+    padding: 5px 0 10px 40px;
+   }
+   .Ve-Le{
+    padding-top: 10px;
+    font-size: 20px;
+   }
+   .Ve-Combo{
+    padding-top: 10px;
+    font-size: 20px;
+   }
+
+    .ThemVe-TinhTrang{
+    padding: 5px 0 10px 40px;
+}
+
+.Cbm{
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #A5A8B1;
+    cursor: pointer;
+}
+
+.Batbuoc{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    width: 129px;
+    height: 15px;
+    padding: 5px 0 5px 40px;
+}
+
+.Batbuoc span{
+    color: red;
+    
+}
+
+.btn-ThemVe{
+    display: flex;
+    justify-content: center;
+}
+
+button.btn-huy {
+    padding: 12px 45px;
+    border: 1px solid #FF993C;
+    color: #FF993C;
+    border-radius: 10px;
+    background-color: white;
+    margin-right: 15px;
+    cursor: pointer;
+}
+button.btn-them {
+    padding: 12px 45px;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    background-color: #FF993C;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+input.text-ve {
+    height: 30px;
+    border-radius: 10px;
+    background-color: #F1F4F8;
+    border: none;
+    padding: 10px 12px
+}
+
+input.text-ve1 {
+    height: 30px;
+    width: 50px;
+    border-radius: 10px;
+    background-color: #F1F4F8;
+    border: none;
+    padding: 10px 12px
+}

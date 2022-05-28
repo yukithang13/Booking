@@ -28,3 +28,27 @@ export const all = async (): Promise<Array<Todo>> => {
     return data as Array<Todo>;
 };
 
+// create a todo
+export const create = async (todo: Todo): Promise<Todo> => {
+    const docRef = await db.collection("Booking").add(todo);
+
+    return {
+        id: docRef.id,
+        ...todo,
+    } as Todo;
+};
+
+// update a todo
+export const update = async (id: string, todo: Todo): Promise<Todo> => {
+    await db.collection("Booking").doc(id).update(todo);
+    // return updated todo
+    return {
+        id: id,
+        ...todo,
+    } as Todo;
+};
+
+// delete a todo
+export const remove = async (id: string) => {
+    await db.collection("Booking").doc(id).delete();
+};

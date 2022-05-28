@@ -1,20 +1,54 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState } from "react";
 import "./index.css";
-
+import * as todo from "../../service/todo";
 import { SearchOutlined,FilterOutlined } from "@ant-design/icons";
-import TableVe from "./TableVe";
+import { CSVLink } from "react-csv";
 
 function DanhSachVe(){
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        fetchTodos();
       }, []);
 
+      const [todos, setTodos] = useState<Array<todo.Todo>>([]);
+    
 
       const ShowLocVe = () =>{
-         document.getElementsByClassName("Background-black")
          const element: HTMLElement = document.getElementById('Background-black') as HTMLElement
          element.style.display = 'block'
       }
+      const LocData = () =>{
+        const element: HTMLElement = document.getElementById('Background-black') as HTMLElement
+        element.style.display = 'none'
+
+     }
+     
+     
+     const fetchTodos = async () => {
+        setTodos([]);
+        const _todos = await todo.all();
+        // set state
+        setTodos(_todos);
+        const checkVe = document.getElementsByClassName('CheckTinhTrang');
+        for ( let i = 0; i < checkVe.length; i++) {
+            if(checkVe[i].innerHTML === "Đã sử dụng")
+            {   
+                checkVe[i].classList.add("TinhTrang-dasudung");
+            }
+            if(checkVe[i].innerHTML === "Chưa sử dụng")
+            {
+                checkVe[i].classList.add("TinhTrang-chuasudung");
+            }
+            if(checkVe[i].innerHTML === "Hết hạn")
+            {
+                checkVe[i].classList.add("TinhTrang-hethan");
+            }
+          }
+
+         
+        }
+       
+        
    return(
        
         <div className="DanhSach">
@@ -27,7 +61,7 @@ function DanhSachVe(){
                  </div> 
                     <div className="DanhSach-locVe">
                         <div className="DanhSach-locVe1"><button className="LocVe" onClick={ShowLocVe} ><FilterOutlined /> Lọc Vé</button></div>       
-                        <div className="DanhSach-locVe1"><button className="XuatFile" > Xuất file(.csv)</button></div>
+                        <div className="DanhSach-locVe1"><button   className="XuatFile" > Xuất file(.csv)</button></div>
                     </div>
                 </div>
                 
@@ -44,12 +78,26 @@ function DanhSachVe(){
                         <th> </th>
                     </tr>
                 </thead>
-                <TableVe/>
+                <tbody>
+               {todos.map((todos, index) => (
+                   <tr>
+                        <td className="cangiua">{index + 1}</td>
+                        <td className="cantrai">{todos.BookingCode}</td>
+                        <td className="cantrai">{todos.id}</td>
+                        <td className="cantrai"><div className="CheckTinhTrang">{todos.TinhTrang}</div></td>
+                        <td className="canphai">{todos.NgaySuDung.toDate().toLocaleDateString()}</td>
+                        <td className="canphai">{todos.NgayXuatVe.toDate().toLocaleDateString()}</td>
+                        <td className="cantrai">{todos.CongCheckIn}</td>
+                        <td></td>
+                    </tr>
+                ))}
+               
+            </tbody>   
                 </table>
 
             </div>
-            <div id="Background-black">
-                <div className="BangLocVe">
+            <div  id="Background-black">
+                <form className="BangLocVe">
                     <h2>Lọc vé</h2>
                     <div className="LocVe-Date">
                         <div className="date1">
@@ -83,8 +131,8 @@ function DanhSachVe(){
                         <div className="item-checkbox"><input type="checkbox" value={"Cổng 5"}/> Cổng 5</div>
                     </div>
                     </div>
-                    <button className="btn-LocVe1" onClick={ShowLocVe}>Lọc</button>
-                </div>
+                    <button className="btn-LocVe1" onClick={LocData}>Lọc</button>
+                </form>
                 
             </div>
         </div>
