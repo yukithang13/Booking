@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import "./index.css";
 
 import { EditOutlined, SearchOutlined } from "@ant-design/icons";
@@ -19,6 +19,78 @@ function DanhSachGoiVe(){
         const element: HTMLElement = document.getElementById('Background-black1') as HTMLElement
         element.style.display = 'none'
      }
+     const [TenGoiVe, setTenGoiVe] = useState("");
+     const [NgayApDung, setNgayApDung] = useState("");
+     const [NgayHetHan, setNgayHetHan] = useState("");
+     const [GiaVe, setGiaVe] = useState(0);
+     const [GiaCombo, setGiaCombo] = useState(0);
+     const [SoLuong, setSoLuong] = useState(0);
+     const [TinhTrangGoi, setTinhTrangGoi] = useState("");
+     const [isEditMode, setIsEditMode] = useState(false);
+     const [selectedId, setSelectedId] = useState("");
+     
+
+     const onSubmit =  (e: FormEvent) => {
+        e.preventDefault();
+  
+        todoPackets.create({TenGoiVe: TenGoiVe, NgayAD: new Date(NgayApDung), NgayHH:new Date(NgayHetHan), GiaVe:GiaVe, GiaCombo:GiaCombo, TinhTrangGoi:TinhTrangGoi, SoLuong:SoLuong });
+
+        // clean the form
+        setTenGoiVe(TenGoiVe);
+        setNgayApDung(NgayApDung);
+        setGiaVe(GiaVe);
+        setSoLuong(SoLuong);
+        setGiaCombo(GiaCombo);
+        setNgayHetHan(NgayHetHan);
+        setTinhTrangGoi(TinhTrangGoi)
+        fetchTodoPacket();
+        
+    };
+
+    //  const toEditMode = (id: string, TenGoiVe: string, NgayAD: any, NgayHH:any, GiaVe:number, GiaCombo:number, TinhTrangGoi:string, SoLuong:number) => {
+
+    //     setIsEditMode(true);
+
+    //     // need to tweak the date first before put it in input datetime local
+    //     const _date =
+    //         new Date(NgayAD.toDate()).getFullYear() +
+    //         "-" +
+    //         (new Date(NgayAD.toDate()).getMonth() + 1) +
+    //         "-" +
+    //         (new Date(NgayAD.toDate()).getDate().toString().length === 1 ? "0" + new Date(NgayAD.toDate()).getDate() : new Date(NgayAD.toDate()).getDate());
+
+    //     const time =
+    //         new Date(NgayAD.toDate()).toLocaleTimeString().replaceAll("AM", "").replaceAll("PM", "").replace(/\s/g, "").length === 7
+    //             ? "0" + new Date(NgayAD.toDate()).toLocaleTimeString().replaceAll("AM", "").replaceAll("PM", "").replace(/\s/g, "")
+    //             : new Date(NgayAD.toDate()).toLocaleTimeString().replaceAll("AM", "").replaceAll("PM", "").replace(/\s/g, "");
+    //      const _date1 =
+    //         new Date(NgayHH.toDate()).getFullYear() +
+    //         "-" +
+    //         (new Date(NgayHH.toDate()).getMonth() + 1) +
+    //         "-" +
+    //         (new Date(NgayHH.toDate()).getDate().toString().length === 1 ? "0" + new Date(NgayHH.toDate()).getDate() : new Date(NgayHH.toDate()).getDate());
+
+    //     const time1 =
+    //         new Date(NgayHH.toDate()).toLocaleTimeString().replaceAll("AM", "").replaceAll("PM", "").replace(/\s/g, "").length === 7
+    //             ? "0" + new Date(NgayHH.toDate()).toLocaleTimeString().replaceAll("AM", "").replaceAll("PM", "").replace(/\s/g, "")
+    //             : new Date(NgayHH.toDate()).toLocaleTimeString().replaceAll("AM", "").replaceAll("PM", "").replace(/\s/g, "");
+
+
+    //     //const dateString = (_date + "T" + time).toString();
+    //     const dateString = (_date).toString();
+    //     const dateString1 = (_date1).toString();
+
+    //     // set the form value
+    //     setTenGoiVe(TenGoiVe);
+    //     setNgayApDung(dateString);
+    //     setGiaVe(GiaVe);
+    //     setSoLuong(SoLuong);
+    //     setGiaCombo(GiaCombo);
+    //     setNgayHetHan(dateString1);
+    //     setTinhTrangGoi(TinhTrangGoi)
+    //     // also the the selectedid state
+    //     setSelectedId(id);
+    // };
      const [todoPacket, setTodoPacket] = useState<Array<todoPackets.TodoPacket>>([]);
      const fetchTodoPacket = async () => {
         setTodoPacket([]);
@@ -84,6 +156,11 @@ function DanhSachGoiVe(){
                     </tr>
                 </thead>
                 <tbody>
+                {todoPacket.length === 0 ? (
+                   <div className="container">
+                   <span className="loader"></span>
+                 </div>
+                ) : null}
                 {todoPacket.map((todopacket, index) => (
                         <tr>
                         <td>{index + 1}</td>
@@ -94,7 +171,8 @@ function DanhSachGoiVe(){
                         <td className="canphai">{todopacket.GiaVe.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
                         <td className="cantrai">{todopacket.GiaCombo.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} / {todopacket.SoLuong} vé</td>
                         <td className="cantrai"><div className="CheckTinhTrang">{todopacket.TinhTrangGoi}</div></td>
-                        <td><button className="btn-capnhap"><EditOutlined className="EditOutlined" /> Cập nhập</button></td>
+                        <td><button className="btn-capnhap" ><EditOutlined className="EditOutlined" /> Cập nhập</button></td>
+                        {/* onClick={() => toEditMode(todopacket.id!!,todopacket.TenGoiVe ,todopacket.NgayAD, todopacket.NgayHH, todopacket.GiaVe, todopacket.GiaCombo, todopacket.TinhTrangGoi, todopacket.SoLuong)} */}
                     </tr>
                  ))}
                    
@@ -104,46 +182,87 @@ function DanhSachGoiVe(){
 
             </div>
             <div id="Background-black1">
-                <div className="BangThemVe">
+                <form onSubmit={onSubmit} className="BangThemVe">
                     <h2>Thêm gói vé</h2>
                     <div className="ThemVe-Ten">
                         <h4>Tên gói vé <span>*</span></h4>
-                        <input type="text" placeholder="Nhập tên gói vé"/>
+                        <input 
+                            type="text" 
+                            placeholder="Nhập tên gói vé" 
+                            value={TenGoiVe}
+                            
+                            onChange={(e) => setTenGoiVe(e.target.value)} 
+                        />
                     </div>
                     <div className="ThemVe-Date">
                         <div className="date1">
                             <h4>Ngày áp dụng</h4>
-                            <input className="Date-Them" type="date" />
+                            <input
+                                className="Date-Them" type="date" 
+                                value={NgayApDung}
+                                
+                                onChange={(e) => setNgayApDung(e.target.value)} 
+                            />
                             <input type="time" />
                         </div>
                         <div className="date2">
                             <h4>Ngày hết hạn</h4>
-                            <input className="Date-Them" type="date" />
+                            <input 
+                                className="Date-Them" type="date" 
+                                value={NgayHetHan}
+                                
+                                onChange={(e) => setNgayHetHan(e.target.value)} 
+                            />
                             <input type="time" />
                         </div>
                     </div>
                     <div className="ThemVe-GiaVe">
                         <h4>Giá vé áp dụng</h4>
                         <div className="Ve-Le">
-                            <input type="checkbox" /> Vé lẻ (vnđ/vé) với giá <input className="text-ve" placeholder="Giá vé" type="text" /> / vé
+                            <input 
+                                type="checkbox"
+                             /> Vé lẻ (vnđ/vé) với giá 
+                             <input 
+                                value={GiaVe}
+                               
+                                onChange={(e) => setGiaVe(e.target.valueAsNumber)}  
+                                className="text-ve" 
+                                placeholder="Giá vé" 
+                                type="number" /> / vé
                         </div>
                         <div className="Ve-Combo">
-                            <input type="checkbox" /> Combo vé với giá <input className="text-ve" placeholder="Giá vé" type="text" /> / <input className="text-ve1" placeholder="Giá vé" type="text" /> vé
+                            <input type="checkbox" /> Combo vé với giá 
+                            <input 
+                                value={GiaCombo}
+                                
+                                onChange={(e) => setGiaCombo(e.target.valueAsNumber)}  
+                                className="text-ve" 
+                                placeholder="Giá vé" 
+                                type="number" /> / 
+                            <input 
+                                value={SoLuong}
+                                
+                                onChange={(e) => setSoLuong(e.target.valueAsNumber)} 
+                                className="text-ve1"
+                                placeholder="Giá vé" 
+                                type="number" 
+                            /> vé
                         </div>
                     </div>
                     <div className="ThemVe-TinhTrang">
                         <h4>Tình Trạng</h4>
-                        <select className="Cbm">
-                            <option value="Đang áp dụng">Đang áp dụng</option>
-                            <option value="Chưa áp dụng">Chưa áp dụng</option>
+                        <select onChange={(e) => setTinhTrangGoi(e.target.value)} className="Cbm">
+                            <option>Chọn</option>
+                            <option value="Đang Áp dụng" >Đang áp dụng</option>
+                            <option value="Tắt" >Tắt</option>
                         </select>
                     </div>
                     <p className="Batbuoc"><span>*</span>là thông tin bắt buộc</p>
                     <div className="btn-ThemVe">
-                        <button className="btn-huy" onClick={HuyThemVe}>Hủy</button>
-                        <button className="btn-them">Lưu</button>
+                        <span className="btn-huy" onClick={HuyThemVe}>Hủy</span>
+                        <button type="submit" className="btn-them" >Lưu</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
    )

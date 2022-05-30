@@ -24,7 +24,8 @@ export const all = async (): Promise<Array<TodoPacket>> => {
         });
     });
 
-    return data as Array<TodoPacket>;
+    
+    return data.reverse() as Array<TodoPacket>;
 };
 
 // create a todo
@@ -32,7 +33,7 @@ export const create = async (todo: TodoPacket): Promise<TodoPacket> => {
     const docRef = await db.collection("BookingPacket").add(todo);
 
     return {
-        id: docRef.id,
+        id: docRef.id ,
         ...todo,
     } as TodoPacket;
 };

@@ -228,7 +228,7 @@ table.table-danhsachgoive tbody tr:nth-child(2n + 2) {
     justify-content: center;
 }
 
-button.btn-huy {
+span.btn-huy {
     padding: 12px 45px;
     border: 1px solid #FF993C;
     color: #FF993C;

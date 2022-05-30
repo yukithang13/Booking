@@ -8,6 +8,49 @@ h4{
     font-size: 18px;
     line-height: 28px;
 }
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+}
+.loader{
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+.loader::before,
+.loader::after {
+  content: '';
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  animation: rotate 1s infinite cubic-bezier(0.77, 0, 0.175, 1);
+}
+.loader::before {
+  background-color: #fc3f9e;
+}
+.loader::after {
+  background-color: #50e8f3;
+  animation-delay: .5s;
+}
+@keyframes rotate {
+  0%,
+  100% {
+    left: 95px;
+  }
+  25% {
+    transform: scale(.3);
+  }
+  50% {
+    left: 0;
+  }
+  75% {
+    transform: scale(1);
+  }
+}
 
 .DanhSach{
     height: 87vh;

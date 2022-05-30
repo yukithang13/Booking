@@ -27,3 +27,81 @@ h4{
     justify-content: space-between;
 }
 
+.Home-tk-3{
+    padding: 24px;
+}
+
+
+#ChanTrang{
+    display:flex;
+    margin-top:350px;
+
+}
+#ChanTrang #ChanTrang1{
+    width: 200px;
+    margin-left: 250px;
+    margin-top: 50px;
+}
+#ChanTrang #ChanTrang2{
+    width: 200px;
+    margin-left: 220px;
+    margin-top: 50px;
+}
+
+#boder1 {
+    border: 0.5px solid white;
+     background-color: white;
+    box-shadow: 2px 2px 2px #e1dede;
+     border-Radius: 4px;
+     width: 60px;
+     margin-top: 19px;
+     margin-left: 227px;
+     position: relative;
+     height: 35px;
+     padding: 5px;
+     text-align: center;
+}
+#boder2 {
+    border: 0.5px solid white;
+     background-color: white; 
+     box-shadow: 2px 2px 2px #e1dede;
+     margin-left: 400px;
+     border-Radius: 4px;
+     width: 60px;
+     margin-top: -174px;
+     position: relative;
+     height: 35px;
+     padding: 5px;
+     text-align: center;
+}
+#boder3 {
+    border: 0.5px solid white;
+     background-color: white; 
+     box-shadow: 2px 2px 2px #e1dede;
+     margin-left: 840px;
+     margin-top: -80px;
+     border-Radius: 4px;
+     width: 60px;
+     position: relative;
+     height: 35px;
+     padding: 5px;
+     text-align: center;
+}
+#boder4 {
+    border: 0.5px solid white;
+     background-color: white; 
+     box-shadow: 2px 2px 2px #e1dede;
+     margin-left: 627px;
+    margin-top: -15px;
+     border-Radius: 4px;
+     width: 60px;
+     position: relative;
+     height: 35px;
+     padding: 5px;
+     text-align: center;
+}
+
+
+input[type="date"] text {
+    background: pink;
+}
