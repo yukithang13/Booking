@@ -1,8 +1,9 @@
 import React, {useEffect, useState } from "react";
 import "./index.css";
 import * as todo from "../../service/todo";
-import { SearchOutlined,FilterOutlined } from "@ant-design/icons";
+import { SearchOutlined,FilterOutlined, MoreOutlined } from "@ant-design/icons";
 import { CSVLink } from "react-csv";
+
 
 function DanhSachVe(){
     useEffect(() => {
@@ -11,7 +12,7 @@ function DanhSachVe(){
       }, []);
 
       const [todos, setTodos] = useState<Array<todo.Todo>>([]);
-    
+
 
       const ShowLocVe = () =>{
          const element: HTMLElement = document.getElementById('Background-black') as HTMLElement
@@ -23,7 +24,7 @@ function DanhSachVe(){
 
      }
      
-     
+    
      const fetchTodos = async () => {
         setTodos([]);
         const _todos = await todo.all();
@@ -44,7 +45,22 @@ function DanhSachVe(){
                 checkVe[i].classList.add("TinhTrang-hethan");
             }
           }
-
+          
+          const checkMore = document.getElementsByClassName('CheckMore');
+           for(let i = 0; i < checkVe.length; i++){ 
+              if(checkVe[i].innerHTML === "Chưa sử dụng")
+              {
+                  for(let j = 0; j < checkMore.length; j++){
+                      checkMore[i].classList.add('dropbtn');
+                      checkMore[i].classList.add('icons');
+                      checkMore[i].classList.add('btn-right');
+                      checkMore[i].classList.add('showLeft');
+                         
+                  }
+                  
+              }
+             
+          }
          
         }
         const headers =[
@@ -61,6 +77,7 @@ function DanhSachVe(){
             headers: headers,
             filename: 'XuatVe.csv'
          }
+
         
    return(
        
@@ -84,6 +101,7 @@ function DanhSachVe(){
                         <th>STT</th>
                         <th className="cantrai">Booking code</th>             
                         <th className="cantrai">Số vé</th>
+                        <th className="cantrai">Tên sự kiện</th>
                         <th className="cantrai">Tình trạng</th>
                         <th className="canphai">Ngày sử dụng</th>
                         <th className="canphai">Ngày xuất vé</th>
@@ -103,11 +121,12 @@ function DanhSachVe(){
                         <td className="cangiua">{index + 1}</td>
                         <td className="cantrai">{todos.BookingCode}</td>
                         <td className="cantrai">{todos.id}</td>
+                        <td className="cantrai">{todos.TenSuKien}</td>
                         <td className="cantrai"><div className="CheckTinhTrang">{todos.TinhTrang}</div></td>
                         <td className="canphai">{todos.NgaySuDung.toDate().toLocaleDateString()}</td>
                         <td className="canphai">{todos.NgayXuatVe.toDate().toLocaleDateString()}</td>
                         <td className="cantrai">{todos.CongCheckIn}</td>
-                        <td></td>
+                        <td><div className="CheckMore"></div></td>
                     </tr>
                 ))}
                
@@ -130,9 +149,9 @@ function DanhSachVe(){
                     </div>
                     <h4 className="h4-sd">Tình trạng sử dụng</h4>
                     <div className="LocVe-TinhTrang">
-                        <div className="item-input"><input type="radio" value={"Tất cả"}/>Tất cả</div>
-                        <div className="item-input"><input type="radio" value={"Đã sử dụng"}/>Đã sử dụng</div>
-                        <div className="item-input"><input type="radio" value={"Chưa sử dụng"}/>Chưa sử dụng</div>
+                        <div className="item-input"><input type="radio" value={"Tất cả"}  />Tất cả</div>
+                        <div className="item-input"><input type="radio" value={"Đã sử dụng"} />Đã sử dụng</div>
+                        <div className="item-input"><input type="radio" value={"Chưa sử dụng"} />Chưa sử dụng</div>
                         <div className="item-input"><input type="radio" value={"Hết hạn"}/>Hết hạn</div>
                     </div>
                     <h4 className="h4-sd">Cổng Check-in</h4>
@@ -150,7 +169,7 @@ function DanhSachVe(){
                         <div className="item-checkbox"><input type="checkbox" value={"Cổng 5"}/> Cổng 5</div>
                     </div>
                     </div>
-                    <button className="btn-LocVe1" onClick={LocData}>Lọc</button>
+                    <button type="submit" className="btn-LocVe1" onClick={LocData}>Lọc</button>
                 </form>
                 
             </div>
