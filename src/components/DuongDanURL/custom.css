@@ -1,0 +1,10 @@
+.calendar {
+    box-shadow: 4px 4px 45px 0px rgba(109, 46, 0, 0.35);
+    border-radius: 20px;
+  }
+  
+  .radioGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from "react";
 import "./index.css";
 import * as todo from "../../service/todo";
-import { SearchOutlined,FilterOutlined, MoreOutlined } from "@ant-design/icons";
+import { SearchOutlined,FilterOutlined } from "@ant-design/icons";
 import { CSVLink } from "react-csv";
 
 
@@ -12,24 +12,78 @@ function DanhSachVe(){
       }, []);
 
       const [todos, setTodos] = useState<Array<todo.Todo>>([]);
+      const [Cong, setCong] = useState('all')
+      const [TinhTrangVe, setTinhTrangVe] = useState("")
 
 
       const ShowLocVe = () =>{
          const element: HTMLElement = document.getElementById('Background-black') as HTMLElement
          element.style.display = 'block'
       }
-      const LocData = () =>{
+      const LocData = async () =>{
         const element: HTMLElement = document.getElementById('Background-black') as HTMLElement
         element.style.display = 'none'
-
+        
+        setTodos([]);
+        setTinhTrangVe(TinhTrangVe)
+        if(TinhTrangVe ==="")
+        {
+             const _todos = await todo.all();
+             setTodos(_todos);
+             checkColor();
+        }
+        
+        if(TinhTrangVe === "dasudung")
+        {
+            const data1 =   (await todo.all()).filter((item: any) => item.TinhTrang === "Đã sử dụng");
+            setTodos(data1);
+        }
+        if(TinhTrangVe === "chuasudung")
+        {
+            const data1 =   (await todo.all()).filter((item: any) => item.TinhTrang === "Chưa sử dụng");
+            setTodos(data1);
+        }
+        
+        const chooseOption = async (param: {
+            type: string
+        }) => {
+    
+            switch(param.type) {
+    
+                case 'all':
+                    const data =  await todo.all();
+                    setTodos(data);
+                    
+                    break;
+                
+                case 'dasudung':
+                    const data1 =   (await todo.all()).filter((item: any) => item.TinhTrang === "Đã sử dụng");
+                    setTodos(data1);
+                    
+                    break;
+    
+                case 'chuasudung':
+                    const data2 =    (await todo.all()).filter((item: any) => item.TinhTrang === "Chưa sử dụng");
+                    setTodos(data2);
+                    
+                    break;
+                 case 'hethan':
+                    const data3 =    (await todo.all()).filter((item: any) => item.TinhTrang === "Hết hạn");
+                    setTodos(data3);
+                    
+                    break;
+                    
+            }
+            
+        }
+    
+        
+        setTinhTrangVe(TinhTrangVe)
+       
      }
      
-    
-     const fetchTodos = async () => {
-        setTodos([]);
-        const _todos = await todo.all();
-        // set state
-        setTodos(_todos);
+
+     const checkColor = () =>{
         const checkVe = document.getElementsByClassName('CheckTinhTrang');
         for ( let i = 0; i < checkVe.length; i++) {
             if(checkVe[i].innerHTML === "Đã sử dụng")
@@ -61,6 +115,15 @@ function DanhSachVe(){
               }
              
           }
+     }
+    
+     const fetchTodos = async () => {
+        setTodos([]);
+        const _todos = await todo.all();
+        // set state
+        setTodos(_todos);
+        checkColor();
+        
          
         }
         const headers =[
@@ -135,7 +198,7 @@ function DanhSachVe(){
 
             </div>
             <div  id="Background-black">
-                <form className="BangLocVe">
+                <form onSubmit={LocData} className="BangLocVe">
                     <h2>Lọc vé</h2>
                     <div className="LocVe-Date">
                         <div className="date1">
@@ -149,19 +212,45 @@ function DanhSachVe(){
                     </div>
                     <h4 className="h4-sd">Tình trạng sử dụng</h4>
                     <div className="LocVe-TinhTrang">
-                        <div className="item-input"><input type="radio" value={"Tất cả"}  />Tất cả</div>
-                        <div className="item-input"><input type="radio" value={"Đã sử dụng"} />Đã sử dụng</div>
-                        <div className="item-input"><input type="radio" value={"Chưa sử dụng"} />Chưa sử dụng</div>
-                        <div className="item-input"><input type="radio" value={"Hết hạn"}/>Hết hạn</div>
+                        <div className="item-input">
+                            <input 
+                            type="radio" 
+                            name="option"
+                            value={"Tất cả"}
+                            onChange={(e) => setTinhTrangVe(e.target.value)}
+                            
+                      />Tất cả</div>
+                        <div className="item-input"><input type="radio" name="option" value={"dasudung"}  onChange={(e) => setTinhTrangVe(e.target.value)}   />Đã sử dụng</div>
+                        <div className="item-input"><input type="radio" name="option" value={"chuasudung"} onChange={(e) => setTinhTrangVe(e.target.value)}   />Chưa sử dụng</div>
+                        <div className="item-input"><input type="radio" name="option" value={"hethan"} onChange={(e) => setTinhTrangVe(e.target.value)}  />Hết hạn</div>
                     </div>
                     <h4 className="h4-sd">Cổng Check-in</h4>
                     <div className="LocVe-All">
                     <div className="LocVe-Cong">
-                        <div className="item-checkbox"><input type="checkbox" value={"Tất cả"}/> Tất cả</div>
-                        <div className="item-checkbox"><input type="checkbox" value={"Cổng 3"}/> Cổng 3</div>             
+                        <div className="item-checkbox">
+                            <input 
+                                type="checkbox"
+                                value={"Tất cả"}
+                            /> 
+                            Tất cả
+                        </div>
+                        <div className="item-checkbox">
+                            <input 
+                                type="checkbox" 
+                                value={"Cổng 3"}
+                            />
+                            Cổng 3
+                        </div>             
                     </div>
                     <div className="LocVe-Cong1">
-                        <div className="item-checkbox"><input type="checkbox" value={"Cổng 1"}/> Cổng 1</div>
+                        <div className="item-checkbox">
+                            <input 
+                                type="checkbox" 
+                                value={Cong}
+                                onChange={(e) => setCong(e.target.value)} 
+                            /> 
+                            Cổng 1
+                        </div>
                         <div className="item-checkbox"><input type="checkbox" value={"Cổng 4"}/> Cổng 4</div>      
                     </div>
                     <div className="LocVe-Cong2">
@@ -169,7 +258,7 @@ function DanhSachVe(){
                         <div className="item-checkbox"><input type="checkbox" value={"Cổng 5"}/> Cổng 5</div>
                     </div>
                     </div>
-                    <button type="submit" className="btn-LocVe1" onClick={LocData}>Lọc</button>
+                    <button type="submit" className="btn-LocVe1" >Lọc</button>
                 </form>
                 
             </div>
